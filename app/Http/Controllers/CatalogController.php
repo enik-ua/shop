@@ -14,7 +14,9 @@ class CatalogController extends Controller
      */
     public function index()
     {
-        return view('welcome');
+        $catalogs = Catalog::all();
+
+        return view('catalogindex')->with('catalogs',$catalogs);
     }
 
     /**
@@ -24,7 +26,7 @@ class CatalogController extends Controller
      */
     public function create()
     {
-        //
+        return view('catalogcreate');
     }
 
     /**
@@ -35,7 +37,25 @@ class CatalogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request::all();
+        $catalog = new Catalog;
+        $catalog->name = $input['name'];
+        $catalog->modified = $input['modified'];
+        $catalog->programId = $input['programId'];
+        $catalog->programName = $input['programName'];
+        $catalog->price = $input['price'];
+        $catalog->currency = $input['currency'];
+        $catalog->descriprion = $input['descriprion'];
+        $catalog->manufacturer = $input['manufacturer'];
+        $catalog->ean = $input['ean'];
+        $catalog->image = $input['image'];
+        $catalog->priceOld = $input['priceOld'];
+        $catalog->shippingCosts = $input['shippingCosts'];
+        $catalog->merchantCategory = $input['merchantCategory'];
+        $catalog->merchantEmail = $input['merchantEmail'];
+        
+        return redirect('articles');
+
     }
 
     /**
