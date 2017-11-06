@@ -11,7 +11,13 @@
 |
 */
 
-Route::get('/',"CatalogController@index");
-Route::get('/welcome', function () {
-    return view('welcome');
+//Route::resource('/catalog', 'CatalogController');
+Route::get('/catalog/create',"CatalogController@create");
+Route::get('/catalog',"CatalogController@index");
+Route::post('/catalog',"CatalogController@store");
+//Route::redirect('/', '/public/catalog/');
+//Route::get('/',"CatalogController@create");
+Route::get('/', function () {
+    return view('catalogcreate');
 });
+
